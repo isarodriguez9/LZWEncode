@@ -23,7 +23,7 @@ public class Encoder {
 			while (encodingTable.containsKey(next)) {
 				next+=br.read();
 			}
-			encodingTable.put (next, c);
+			encodingTable.put(next, c);
 			c++;
 			output+= "" + encodingTable.get(next.substring(0, next.length()-1));
 			next = next.substring(next.length()-1);
