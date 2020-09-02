@@ -2,12 +2,15 @@ import java.util.*;
 import java.io.*;
 
 public class Encoder {
-	private ArrayList<String> encodingTable;
+	private HashMap<String, Integer> encodingTable;
 	
+	/**
+	 * 
+	 */
 	public Encoder() {
-		encodingTable = new ArrayList<String>();
+		encodingTable = new HashMap<String, Integer>();
 		for (int i = 0; i < 255; i++) {
-			encodingTable.add((char)i + "");
+			encodingTable.put((char)i + "", i);
 		}
 	}
 	
