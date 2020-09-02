@@ -10,7 +10,7 @@ public class Encoder {
 	 */
 	public Encoder() {
 		encodingTable = new HashMap<String, Integer>();
-		for (int i = 0; i < 255; i++) {
+		for (int i = 0; i <= 255; i++) {
 			encodingTable.put((char)i + "", i);
 		}
 	}
@@ -24,7 +24,7 @@ public class Encoder {
 			while (encodingTable.containsKey(next)) {
 				next+=br.read();
 			}
-			ecodingTable.put (next, c);
+			encodingTable.put (next, c);
 			c++;
 			
 			output+= ""+ (String) encodingTable.get(next.substring(0, length()-1));
