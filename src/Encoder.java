@@ -14,13 +14,11 @@ public class Encoder {
 		}
 	}
 	
-	public void Encode(String FileName) throws FileNotFoundException {
+	public void Encode(String FileName) throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader(FileName));
-		while (!br.ready()) {
-			String next = br.read();
-
+		while (br.ready()) {
+			String next = (char)br.read() + "";
 		}
-		
 		//br.read() = next character
 	}
 }
