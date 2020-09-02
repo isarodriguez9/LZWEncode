@@ -15,7 +15,7 @@ public class Encoder {
 		}
 	}
 	
-	public void Encode(String FileName) throws FileNotFoundException {
+	public void Encode(String FileName) throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader(FileName));
 		private int c = 256;
 		
@@ -31,7 +31,5 @@ public class Encoder {
 			
 			next = next.substring(next.length()-1);
 		}
-		
-		//br.read() = next character
 	}
 }
