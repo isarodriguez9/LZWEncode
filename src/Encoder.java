@@ -18,8 +18,8 @@ public class Encoder {
 	public void Encode(String FileName) throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader(FileName));
 		int c = 256;
+		String next = (char)br.read() + "";
 		while (br.ready()) {
-			String next = (char)br.read() + "";
 			while (encodingTable.containsKey(next)) {
 				next+=br.read();
 			}
