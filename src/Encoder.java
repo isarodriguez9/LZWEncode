@@ -17,18 +17,15 @@ public class Encoder {
 	
 	public void Encode(String FileName) throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader(FileName));
-		private int c = 256;
-		
-		while (!br.ready()) {
-			String next = br.read();
+		int c = 256;
+		while (br.ready()) {
+			String next = (char)br.read() + "";
 			while (encodingTable.containsKey(next)) {
 				next+=br.read();
 			}
-			ecodingTable.put (next, c);
+			encodingTable.put (next, c);
 			c++;
-			
-			output+= ""+ (String) encodingTable.get(next.substring(0, length()-1));
-			
+			output+= "" + encodingTable.get(next.substring(0, next.length()-1));
 			next = next.substring(next.length()-1);
 		}
 	}
