@@ -10,7 +10,7 @@ public class Encoder {
 	 */
 	public Encoder() {
 		encodingTable = new HashMap<String, Integer>();
-		for (int i = 0; i < 255; i++) {
+		for (int i = 0; i <= 255; i++) {
 			encodingTable.put((char)i + "", i);
 		}
 	}
