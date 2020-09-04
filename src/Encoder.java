@@ -17,7 +17,7 @@ public class Encoder {
 	
 	public void Encode(String FileName) throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader(FileName));
-		int c = 256;
+		int c = 256; //Stores the next encoding to be used in the table.
 		PrintWriter pw = new PrintWriter(new File("encoded"));
 		//StringBuffer str = new StringBuffer();
 		String next = (char)br.read() + "";
