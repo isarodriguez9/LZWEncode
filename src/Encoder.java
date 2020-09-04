@@ -3,7 +3,6 @@ import java.io.*;
 
 public class Encoder {
 	private HashMap<String, Integer> encodingTable; //Stores all encodings in a HashMap
-	private String output; //Final code
 	
 	/**
 	 * Fills the Hashmap with all 255 single chars.
@@ -15,21 +14,29 @@ public class Encoder {
 		}
 	}
 	
-	public void Encode(String FileName) throws IOException {
-		BufferedReader br = new BufferedReader(new FileReader(FileName));
-		int c = 256;
-		PrintWriter pw = new PrintWriter(new File("encoded"));
-		//StringBuffer str = new StringBuffer();
-		String next = (char)br.read() + "";
-		while (br.ready()) {
-			while (encodingTable.containsKey(next)) {
-				next+=br.read();
+	public void Encode(String fileName, String outputFileName) throws IOException {
+		try { 
+			BufferedReader br = new BufferedReader(new FileReader(fileName));
+			File file = new File(outputFileName);
+			if (!file.exists()) {
+				file.createNewFile();
 			}
-			//str.append(next);
-			encodingTable.put(next, c);
-			c++;
-			output+= "" + encodingTable.get(next.substring(0, next.length()-1));
-			next = next.substring(next.length()-1);
+			FileWriter fw = new FileWriter (file);
+			BufferedWriter writer = new BufferedWriter (fw);
+			
+			int c = 256;
+			String next = (char)br.read() + "";
+			while (br.ready()) {
+				while (encodingTable.containsKey(next)) {
+					next+=br.read();
+				}
+				encodingTable.put(next, c);
+				c++;
+				writer.write("" + encodingTable.get(next.substring(0, next.length()-1)));
+				next = next.substring(next.length()-1);
+			}
+		} catch (Exception exe) {
+			exe.printStackTrace();
 		}
 	}
 }
