@@ -19,7 +19,7 @@ public class Encoder {
 			if (!file.exists()) {
 				file.createNewFile();
 			}
-			PrintWriter pw = new PrintWriter(new File(outputFileName));
+			PrintWriter pw = new PrintWriter(file);
 			
 			int nextEncoding = 256;
 			String next = (char)br.read() + "";
