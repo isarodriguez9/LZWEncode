@@ -14,7 +14,7 @@ public class Encoder {
 		}
 	}
 	
-	public void Encode(String fileName, String outputFileName) throws IOException {
+	public void Encode(String fileName, String outputFileName){
 		try { 
 			BufferedReader br = new BufferedReader(new FileReader(fileName));
 			File file = new File(outputFileName);
