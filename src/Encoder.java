@@ -17,7 +17,7 @@ public class Encoder {
 	public void Encode(String fileName, String outputFileName){
 		try { 
 			BufferedReader br = new BufferedReader(new FileReader(fileName));
-			File file = new File(outputFileName); //Create New File
+			File file = new File(outputFileName); //Create New File (if it doesn't already exist)
 			if (!file.exists()) {
 				file.createNewFile();
 			}
@@ -30,14 +30,15 @@ public class Encoder {
 				while (encodingTable.containsKey(next)) { //Check if in table, if it is, add next letter
 					next+=br.read();
 				}
-				encodingTable.put(next, nextEncoding); //Add encoding to Hashmap
+				encodingTable.put(next, nextEncoding); //Add new codes to Hashmap
 				nextEncoding++;
-				writer.write("" + encodingTable.get(next.substring(0, next.length()-1))); //write
-				next = next.substring(next.length()-1); //reset
+				writer.write("" + encodingTable.get(next.substring(0, next.length()-1))); //write next code to output file
+				next = next.substring(next.length()-1); //reset next to 1 character
 			}
 			br.close();
 			fw.close();
-		} catch (Exception exe) {
+			writer.close();
+		} catch (Exception exe) { //catches any exceptions
 			exe.printStackTrace();
 		}
 	}
