@@ -17,23 +17,23 @@ public class Encoder {
 	public void Encode(String fileName, String outputFileName){
 		try { 
 			BufferedReader br = new BufferedReader(new FileReader(fileName));
-			File file = new File(outputFileName);
+			File file = new File(outputFileName); //Create New File
 			if (!file.exists()) {
 				file.createNewFile();
 			}
 			FileWriter fw = new FileWriter (file);
 			BufferedWriter writer = new BufferedWriter (fw);
 			
-			int c = 256;
+			int nextEncoding = 256;
 			String next = (char)br.read() + "";
 			while (br.ready()) {
-				while (encodingTable.containsKey(next)) {
+				while (encodingTable.containsKey(next)) { //Check if in table, if it is, add next letter
 					next+=br.read();
 				}
-				encodingTable.put(next, c);
-				c++;
-				writer.write("" + encodingTable.get(next.substring(0, next.length()-1)));
-				next = next.substring(next.length()-1);
+				encodingTable.put(next, nextEncoding); //Add encoding to Hashmap
+				nextEncoding++;
+				writer.write("" + encodingTable.get(next.substring(0, next.length()-1))); //write
+				next = next.substring(next.length()-1); //reset
 			}
 		} catch (Exception exe) {
 			exe.printStackTrace();
