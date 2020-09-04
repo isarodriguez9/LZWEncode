@@ -21,8 +21,9 @@ public class Encoder {
 			if (!file.exists()) {
 				file.createNewFile();
 			}
-			FileWriter fw = new FileWriter (file);
-			BufferedWriter writer = new BufferedWriter (fw);
+			//FileWriter fw = new FileWriter (file);
+			//BufferedWriter writer = new BufferedWriter (fw);
+			PrintWriter pw = new PrintWriter(new File(outputFileName));
 			
 			int nextEncoding = 256;
 			String next = (char)br.read() + "";
@@ -32,11 +33,13 @@ public class Encoder {
 				}
 				encodingTable.put(next, nextEncoding); //Add encoding to Hashmap
 				nextEncoding++;
-				writer.write("" + encodingTable.get(next.substring(0, next.length()-1))); //write
+				//writer.write("" + encodingTable.get(next.substring(0, next.length()-1))); //write
+				pw.print("" + encodingTable.get(next.substring(0, next.length()-1)));
 				next = next.substring(next.length()-1); //reset
 			}
 			br.close();
-			fw.close();
+			pw.close();
+			//fw.close();
 		} catch (Exception exe) {
 			exe.printStackTrace();
 		}
