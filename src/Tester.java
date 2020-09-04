@@ -10,5 +10,6 @@ public class Tester {
 		while (br.ready()) {
 			System.out.print(br.read());
 		}
+		br.close();
 	}
 }

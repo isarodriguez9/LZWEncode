@@ -35,6 +35,9 @@ public class Encoder {
 				writer.write("" + encodingTable.get(next.substring(0, next.length()-1))); //write
 				next = next.substring(next.length()-1); //reset
 			}
+			br.close();
+			fw.close();
+			writer.close();
 		} catch (Exception exe) {
 			exe.printStackTrace();
 		}
