@@ -18,19 +18,18 @@ public class Encoder {
 	public void Encode(String FileName) throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader(FileName));
 		int c = 256;
-		StringBuffer str = new StringBuffer();
+		PrintWriter pw = new PrintWriter(new File("encoded"));
+		//StringBuffer str = new StringBuffer();
 		String next = (char)br.read() + "";
 		while (br.ready()) {
 			while (encodingTable.containsKey(next)) {
 				next+=br.read();
 			}
-			str.append(next);
+			//str.append(next);
 			encodingTable.put(next, c);
 			c++;
 			output+= "" + encodingTable.get(next.substring(0, next.length()-1));
 			next = next.substring(next.length()-1);
-			PrintWriter pw = new PrintWriter(new File("encoded"));
-			
 		}
 	}
 }
