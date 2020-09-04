@@ -37,7 +37,6 @@ public class Encoder {
 			}
 			br.close();
 			fw.close();
-			writer.close();
 		} catch (Exception exe) {
 			exe.printStackTrace();
 		}
