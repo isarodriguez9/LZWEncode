@@ -21,16 +21,16 @@ public class Encoder {
 			}
 			PrintWriter pw = new PrintWriter(file);
 			
-			int nextEncoding = 256;
-			String next = (char)br.read() + "";
+			int nextEncoding = 256;//keeps track of the next set of chars' code number in the hashmap
+			String next = (char)br.read() + "";//next set of characters
 			while (br.ready()) {
-				while (encodingTable.containsKey(next)) { //Check if in table, if it is, add next letter
+				while (encodingTable.containsKey(next)) { //Checks if next is in table, if it is, add next letter until it a new, previously unseen string is formed
 					next+=(char)br.read();
 				}
-				encodingTable.put(next, nextEncoding); //Add new codes to Hashmap
-				nextEncoding++;
+				encodingTable.put(next, nextEncoding); //Adds new code to Hashmap
+				nextEncoding++;//increments nextEncoding so the next code always gets the next number
 				pw.print(" " + encodingTable.get(next.substring(0, next.length()-1)));
-				next = next.substring(next.length()-1); //reset
+				next = next.substring(next.length()-1); //resets next to its last character to prepare for the next code
 			}
 			br.close();
 			pw.close();
