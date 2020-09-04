@@ -48,8 +48,7 @@ public class Encoder {
 			br.close();
 			fw.close();
 			writer.close();*/
-		} 
-	catch (Exception exe) { //catches any exceptions
+		} catch (Exception exe) { //catches any exceptions
 			exe.printStackTrace();
 		}
 	}
