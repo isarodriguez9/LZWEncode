@@ -25,7 +25,7 @@ public class Encoder {
 			String next = (char)br.read() + "";
 			while (br.ready()) {
 				while (encodingTable.containsKey(next)) { //Check if in table, if it is, add next letter
-					next+=br.read();
+					next+=(char)br.read();
 				}
 				encodingTable.put(next, nextEncoding); //Add new codes to Hashmap
 				nextEncoding++;
