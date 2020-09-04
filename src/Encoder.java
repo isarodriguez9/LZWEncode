@@ -29,7 +29,7 @@ public class Encoder {
 				}
 				encodingTable.put(next, nextEncoding); //Add new codes to Hashmap
 				nextEncoding++;
-				pw.print("" + encodingTable.get(next.substring(0, next.length()-1)));
+				pw.print(" " + encodingTable.get(next.substring(0, next.length()-1)));
 				next = next.substring(next.length()-1); //reset
 			}
 			br.close();
