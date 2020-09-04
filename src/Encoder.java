@@ -29,7 +29,7 @@ public class Encoder {
 				}
 				encodingTable.put(next, nextEncoding); //Adds new code to Hashmap
 				nextEncoding++;//increments nextEncoding so the next code always gets the next number
-				pw.print(" " + encodingTable.get(next.substring(0, next.length()-1)));
+				pw.print(encodingTable.get(next.substring(0, next.length()-1)) + " ");
 				next = next.substring(next.length()-1); //resets next to its last character to prepare for the next code
 			}
 			br.close();
