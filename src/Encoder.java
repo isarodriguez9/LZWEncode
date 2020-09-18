@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Encoder {
 	private HashMap<String, Integer> encodingTable; //Stores all encodings in a HashMap
-	
+
 	//Fills the Hashmap with all 255 single chars.
 	public Encoder() {
 		encodingTable = new HashMap<String, Integer>();
@@ -11,16 +11,16 @@ public class Encoder {
 			encodingTable.put((char)i + "", i);
 		}
 	}
-	
-	public void Encode(String fileName, String outputFileName){
-		try { 
-			BufferedReader br = new BufferedReader(new FileReader(fileName));
-			File file = new File(outputFileName); //Create New File (if it doesn't already exist)
-			if (!file.exists()) {
-				file.createNewFile();
+
+	public void Encode(String fileName, String filePath) throws IOException {
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(filePath+"\\"+fileName));
+			File nFile = new File(fileName+".lzw"); //Create New File (if it doesn't already exist)
+			if (!nFile.exists()) {
+				nFile.createNewFile();
 			}
-			PrintWriter pw = new PrintWriter(file);
-			
+			PrintWriter pw = new PrintWriter(filePath+"\\"+nFile);
+
 			int nextEncoding = 256;//keeps track of the next set of chars' code number in the hashmap
 			String next = (char)br.read() + "";//next set of characters
 			while (br.ready()) {
