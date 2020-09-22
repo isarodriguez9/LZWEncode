@@ -30,9 +30,9 @@ public class Decoder {
 			String next = read + ""; //stores immediate read output
 
 			while (br.ready()) {
-				while ((read = (char) br.read()) != (char) ' ') { //Checks if br.read is a space, if not adds it to the total integer.
-					System.out.println(next);
-					next+=read;
+				while ((read = (char)br.read()) != (char)' ') { //Checks if br.read is a space, if not adds it to the total integer.
+					System.out.println(next + " || " + read);
+					next += read;
 				}
 
 				code = Integer.valueOf(next);
