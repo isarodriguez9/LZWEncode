@@ -16,6 +16,7 @@ public class Decoder {
 		public void Encode(String fileName, String outputFileName){
 		try { 
 			BufferedReader br = new BufferedReader(new FileReader(fileName));
+			BufferedWriter bw = new BufferedWriter(new FileWriter(new File(fileName.substring(0, fileName.length()-4)+".txt")));//makes the file back to a txt
 			File file = new File(filename.substring(0,length()-3) + "txt"); //Choose filename.txt, creates it if it doesnt exist
 			if (!file.exists()) {
 				file.createNewFile();
@@ -63,7 +64,13 @@ public class Decoder {
 	}
 	}
 
-	public void Write(String value){
-
+	public void Write(String value, BufferedWriter writer){
+		try {
+			writer.write(value);
+			
+		}
+		catch (Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 }
