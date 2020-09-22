@@ -37,10 +37,10 @@ public class Decoder {
 				code = Integer.ValueOf(next);
 
 				if (encodingTable.containsKey(code)) {
-					write(encodingTable.get(code));
+					write(encodingTable.get(code), bw);
 				} else {
 					encodingTable.put(nextEncoding, prevValue + prevValue.substring(0,1)); //Adds edge case to HashMap (there is a way to make this not necessary and to only add to encoding table in one step always but i dont wanna rn)
-					write(encodingTable.get(code));
+					write(encodingTable.get(code), bw);
 					nextEncoding++; 
 				}
 				
@@ -64,7 +64,7 @@ public class Decoder {
 	}
 	}
 
-	public void Write(String value, BufferedWriter writer){
+	public void write(String value, BufferedWriter writer){
 		try {
 			writer.write(value);
 			
