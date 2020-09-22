@@ -34,13 +34,17 @@ public class Decoder {
 					System.out.println(next + " || " + read);
 					next += "" + read;
 				}
+				System.out.println(next);
 
 				code = Integer.valueOf(next);
+				System.out.println(code);
 
 				if (encodingTable.containsKey(code)) {
 					write(encodingTable.get(code), bw);
 				} else {
+					System.out.println(prevValue+"<-- this value ");
 					encodingTable.put(nextEncoding, prevValue + prevValue.substring(0,1)); //Adds edge case to HashMap (there is a way to make this not necessary and to only add to encoding table in one step always but i dont wanna rn)
+					System.out.println(nextEncoding+", "+encodingTable.get(code));
 					write(encodingTable.get(code), bw);
 					nextEncoding++;
 				}
@@ -50,6 +54,7 @@ public class Decoder {
 					encodingTable.put(nextEncoding, check); //Adds it to HashMap
 					nextEncoding++;
 				}
+				prevValue = encodingTable.get(code);
 				next = "";
 			}
 			br.close();
