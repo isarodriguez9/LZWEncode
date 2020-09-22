@@ -32,7 +32,7 @@ public class Decoder {
 			while (br.ready()) {
 				while ((read = (char)br.read()) != (char)' ') { //Checks if br.read is a space, if not adds it to the total integer.
 					System.out.println(next + " || " + read);
-					next += read;
+					next += "" + read;
 				}
 
 				code = Integer.valueOf(next);
