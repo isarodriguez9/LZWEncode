@@ -31,7 +31,9 @@ public class Encoder {
 				if (br.ready())
 				{
 					encodingTable.put(next, nextEncoding); //Adds new code to Hashmap
+					System.out.println("Next: " + next + " substring: " + next.substring(0, next.length()-1));
 					pw.print((char)encodingTable.get(next.substring(0, next.length()-1)).intValue());
+					System.out.println((int)'’');
 					nextEncoding++;
 				} else {
 					if (encodingTable.containsKey(next)) {
