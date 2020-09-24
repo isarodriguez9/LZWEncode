@@ -8,7 +8,7 @@ public class Encoder {
 	public Encoder() {
 		encodingTable = new HashMap<Integer, Node>();
 		for (int i = 0; i <= 255; i++) {
-			encodingTable.put((char)i + "", i);
+			encodingTable.put(i, new Node(1, (char)i+""));
 		}
 	}
 
