@@ -2,11 +2,11 @@ import java.util.*;
 import java.io.*;
 
 public class Encoder {
-	private HashMap<String, Integer> encodingTable; //Stores all encodings in a HashMap
+	private HashMap<Integer, Node> encodingTable; //Stores all encodings in a HashMap
 
 	//Fills the Hashmap with all 255 single chars.
 	public Encoder() {
-		encodingTable = new HashMap<String, Integer>();
+		encodingTable = new HashMap<Integer, Node>();
 		for (int i = 0; i <= 255; i++) {
 			encodingTable.put((char)i + "", i);
 		}
