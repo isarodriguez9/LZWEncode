@@ -2,13 +2,22 @@ import java.util.*;
 import java.io.*;
 
 public class Encoder {
-	private HashMap<Node, Integer> encodingTable; //Stores all encodings in a HashMap
+	final static int DICTINT= 128;
+	final static int MAXHASHSIZE = 5000;
+	private HashMap<String, Integer> encodingTable; //Stores all encodings in a HashMap
 	private MyQueue queue = new MyQueue(); 
 	//Fills the Hashmap with all 255 single chars.
 	public Encoder() {
-		encodingTable = new HashMap <Node, Integer>();
+		encodingTable = new HashMap<String, Integer>();
 		for (int i = 0; i <= 255; i++) {
-			encodingTable.put(new Node((char)i+"", i), 0);
+			encodingTable.put((char)i+"", i);
+		}
+	}
+	public void addHashValues()
+	{
+		for(int i = 0; i<DICTINT; i++)
+		{
+		//	queue.add(encodingTable.get(i).getStr());
 		}
 	}
 
@@ -30,7 +39,7 @@ public class Encoder {
 
 				if (br.ready())
 				{
-					encodingTable.put(new Node(next, nextEncoding),0); //Adds new code to Hashmap
+					encodingTable.put(next, nextEncoding); //Adds new code to Hashmap
 					System.out.println("Next: " + next + " substring: " + next.substring(0, next.length()-1));
 					pw.print((char)encodingTable.get(next.substring(0, next.length()-1)).intValue());
 					System.out.println((int)'’');
@@ -39,7 +48,7 @@ public class Encoder {
 					if (encodingTable.containsKey(next)) {
 						pw.print((char)encodingTable.get(next).intValue());
 					} else {
-						encodingTable.put(new Node(next, nextEncoding), 0); //Adds new code to Hashmap
+						encodingTable.put(next, nextEncoding); //Adds new code to Hashmap
 						pw.print((char)encodingTable.get(next.substring(0, next.length()-1)).intValue());
 						pw.print((char)encodingTable.get(next.substring(next.length()-1)).intValue());
 						nextEncoding++;
