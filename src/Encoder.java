@@ -9,15 +9,10 @@ public class Encoder {
 	//Fills the Hashmap with all 255 single chars.
 	public Encoder() {
 		encodingTable = new HashMap<Node, Integer>();
-		for (int i = 0; i <= 255; i++) {
-			encodingTable.put(new Node((char)i+"", i),0);
-		}
-	}
-	public void addHashValues()
-	{
-		for(int i = 0; i<DICTINT; i++)
-		{
-		//	queue.add(encodingTable.get(i).getStr());
+		for (int i = 0; i < DICTINT; i++) {
+			Node toBeAdded = new Node((char)i+"",i);
+			encodingTable.put(toBeAdded,0);
+			queue.add(toBeAdded);
 		}
 	}
 
@@ -41,12 +36,11 @@ public class Encoder {
 				{
 					Node currentNode = new Node(next,nextEncoding);
 					encodingTable.put(currentNode,0); //Adds new code to Hashmap
-//					if(encodingTable.get(currentNode)=1)
-//					{
-//						queue.remove(currentNode);
-//					}
-			//		queue.add(currentNode);
-
+					if(encodingTable.get(currentNode).equals(1))
+					{
+						queue.remove(currentNode);
+					}
+					queue.add(currentNode);
 					System.out.println("Next: " + next + " substring: " + next.substring(0, next.length()-1));
 					pw.print((char)encodingTable.get(next.substring(0, next.length()-1)).intValue());
 					System.out.println((int)'’');
@@ -55,7 +49,7 @@ public class Encoder {
 					if (encodingTable.containsKey(next)) {
 						pw.print((char)encodingTable.get(next).intValue());
 					} else {
-	//					encodingTable.put(next, nextEncoding); //Adds new code to Hashmap
+						encodingTable.put(next, nextEncoding); //Adds new code to Hashmap
 						pw.print((char)encodingTable.get(next.substring(0, next.length()-1)).intValue());
 						pw.print((char)encodingTable.get(next.substring(next.length()-1)).intValue());
 						nextEncoding++;
