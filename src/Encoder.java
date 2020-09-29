@@ -30,7 +30,7 @@ public class Encoder {
 			}
 			PrintWriter pw = new PrintWriter(nFile);
 
-			int nextEncoding = 256;//keeps track of the next set of chars' code number in the hashmap
+			int nextEncoding = DICTINT;//keeps track of the next set of chars' code number in the hashmap
 			String next = (char)br.read() + "";//next set of characters
 			while (br.ready()) {
 				while (encodingTable.containsKey(next) && br.ready()) { //Checks if next is in table, if it is, add next letter until it a new, previously unseen string is formed
@@ -39,7 +39,14 @@ public class Encoder {
 
 				if (br.ready())
 				{
-					encodingTable.put(new Node(next, nextEncoding),0); //Adds new code to Hashmap
+					Node currentNode = new Node(next,nextEncoding);
+					encodingTable.put(currentNode,0); //Adds new code to Hashmap
+//					if(encodingTable.get(currentNode)=1)
+//					{
+//						queue.remove(currentNode);
+//					}
+			//		queue.add(currentNode);
+
 					System.out.println("Next: " + next + " substring: " + next.substring(0, next.length()-1));
 					pw.print((char)encodingTable.get(next.substring(0, next.length()-1)).intValue());
 					System.out.println((int)'’');
@@ -48,7 +55,7 @@ public class Encoder {
 					if (encodingTable.containsKey(next)) {
 						pw.print((char)encodingTable.get(next).intValue());
 					} else {
-						encodingTable.put(next, nextEncoding); //Adds new code to Hashmap
+	//					encodingTable.put(next, nextEncoding); //Adds new code to Hashmap
 						pw.print((char)encodingTable.get(next.substring(0, next.length()-1)).intValue());
 						pw.print((char)encodingTable.get(next.substring(next.length()-1)).intValue());
 						nextEncoding++;
