@@ -1,7 +1,7 @@
 public class Node {
 private int number;
 private String str;
-	public Node(int integer, String string)
+	public Node(String string, int integer)
 	{
 		number = integer;
 		str = string;
