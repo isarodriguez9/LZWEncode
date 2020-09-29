@@ -1,16 +1,16 @@
 import java.util.*;
 public class MyQueue {
-	LinkedList<String> queue = new LinkedList<String>();
+	LinkedList<Node> queue = new LinkedList<Node>();
 	public MyQueue()
 	{
-		queue = new LinkedList<String>();
+		queue = new LinkedList<Node>();
 	}
-	public void add(String word)
+	public void add(Node node1)
 	{
-		queue.addLast(word);
+		queue.addLast(node1);
 	}
-	public void remove(String word)
+	public void remove(Node node2)
 	{
-		queue.remove(word);
+		queue.remove(node2);
 	}
 }
