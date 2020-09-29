@@ -1,6 +1,7 @@
 import java.util.*;
 import java.io.*;
 public class Decoder {
+final static int MAXHASHSIZE = 50000;
 
 	private HashMap<Integer, String> encodingTable; //Stores all encodings in a HashMap (could be a normal array but I'm lazy)
 
