@@ -2,13 +2,14 @@ import java.util.*;
 import java.io.*;
 public class Decoder {
 final static int MAXHASHSIZE = 50000;
+final int DICTINT = 128;
 
-	private HashMap<Integer, String> encodingTable; //Stores all encodings in a HashMap (could be a normal array but I'm lazy)
+	private HashMap<Node, Integer> encodingTable; //Stores all encodings in a HashMap (could be a normal array but I'm lazy)
 	private MyQueue queue = new MyQueue();
-	public Decoder () { //copy-pasted setup from Encoder but reversed to int,string
-		encodingTable = new HashMap<Integer,String>();
-		for (int i = 0; i <= 255; i++) {
-			encodingTable.put(i, (char)i + "");
+	public Decoder () { //copy-pasted setup from Encoder
+		encodingTable = new HashMap<Node, Integer>();
+		for (int i = 0; i <= DICTINT; i++) {
+			encodingTable.put(new Node((char)i + "",i), 0);
 		}
 		System.out.println(encodingTable.values());
 	}
@@ -23,13 +24,13 @@ final static int MAXHASHSIZE = 50000;
 			}
 			PrintWriter bw = new PrintWriter(nFile);
 
-			int nextEncoding = 256; //keeps track of the next set of chars' code number in the hashmap
+			int nextEncoding = DICTINT; //keeps track of the next set of chars' code number in the hashmap
 			String prevValue = "";
 			Integer code = 0;
 
 			while (br.ready()) {
 				code = br.read();
-				if (encodingTable.containsKey(code)) {
+				if (encodingTable.getKey(code)) {
 					write(encodingTable.get(code), bw);
 
 				} else {
