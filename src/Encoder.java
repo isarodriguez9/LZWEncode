@@ -13,6 +13,7 @@ public class Encoder {
 			Node toBeAdded = new Node((char)i+"",i);
 			encodingTable.put(toBeAdded,0);
 		}
+	}
 
 	public void Encode(String fileName) throws IOException {
 		try {
@@ -34,14 +35,15 @@ public class Encoder {
 				{
 					Node currentNode = new Node(next,nextEncoding);
 					encodingTable.put(currentNode,0); //Adds new code to Hashmap
-					if(encodingTable.get(currentNode)==1)
-
-					{
-						queue.remove(currentNode);
-					}
-					queue.add(currentNode);
 					System.out.println("Next: " + next + " substring: " + next.substring(0, next.length()-1));
 					pw.print((char)encodingTable.get(next.substring(0, next.length()-1)).intValue());
+					Node addToQueue = new Node(next.substring(0, next.length()-1), nextEncoding);
+					if(encodingTable.containsKey(addToQueue))
+					{
+						queue.remove(addToQueue);
+					}
+					queue.add(addToQueue);
+					encodingTable.replace(addToQueue, 0, 1);
 					System.out.println((int)'’');
 					nextEncoding++;
 				} else {
