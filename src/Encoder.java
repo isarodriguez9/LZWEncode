@@ -14,15 +14,6 @@ public class Encoder {
 			encodingTable.put(toBeAdded,0);
 			queue.add(toBeAdded);
 		}
-	}
-
-	public void addHashValues()
-	{
-		for(int i = 0; i<DICTINT; i++)
-		{
-			queue.add(encodingTable.get(i).getStr());
-		}
-	}
 
 	public void Encode(String fileName) throws IOException {
 		try {
