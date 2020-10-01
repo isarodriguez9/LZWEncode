@@ -13,11 +13,9 @@ public class Encoder {
 			Node toBeAdded = new Node((char)i+"",i);
 			encodingTable.put(toBeAdded,0);
 			queue.add(toBeAdded);
-			for (int i = 0; i <= 255; i++) {
-				encodingTable.put(new Node((char)i+"", i),0);
-			}
 		}
 	}
+
 	public void addHashValues()
 	{
 		for(int i = 0; i<DICTINT; i++)
