@@ -12,7 +12,6 @@ public class Encoder {
 		for (int i = 0; i < DICTINT; i++) {
 			Node toBeAdded = new Node((char)i+"",i);
 			encodingTable.put(toBeAdded,0);
-			queue.add(toBeAdded);
 		}
 
 	public void Encode(String fileName) throws IOException {
