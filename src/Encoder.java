@@ -58,11 +58,7 @@ public class Encoder {
 					if (encodingTable.containsKey(next)) {
 						pw.print((char)encodingTable.get(next).intValue());
 					} else {
-
-						encodingTable.put(next, nextEncoding); //Adds new code to Hashmap
 						encodingTable.put(new Node(next, nextEncoding), 0); //Adds new code to Hashmap
-						encodingTable.put(new Node(next, nextEncoding), 0); //Adds new code to Hashmap
-						pw.print((char)encodingTable.get(next.substring(0, next.length()-1)).intValue());
 						pw.print((char)encodingTable.get(next.substring(next.length()-1)).intValue());
 						nextEncoding++;
 					}
