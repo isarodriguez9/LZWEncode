@@ -4,7 +4,7 @@ public class Decoder {
 final static int MAXHASHSIZE = 50000;
 
 	private HashMap<Integer, String> encodingTable; //Stores all encodings in a HashMap (could be a normal array but I'm lazy)
-
+	private MyQueue queue = new MyQueue();
 	public Decoder () { //copy-pasted setup from Encoder but reversed to int,string
 		encodingTable = new HashMap<Integer,String>();
 		for (int i = 0; i <= 255; i++) {
