@@ -13,4 +13,8 @@ public class MyQueue {
 	{
 		queue.remove(node2);
 	}
+	public Node removeFirst()
+	{
+		return queue.remove(0);
+	}
 }

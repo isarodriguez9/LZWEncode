@@ -47,13 +47,10 @@ public class Encoder {
 					System.out.println((int)'’');
 					nextEncoding++;
 				} else {
-					if (encodingTable.containsKey(next)) {
+					Node addToQueue = new Node(next.substring(0, next.length()-1), nextEncoding);
+					if (encodingTable.containsKey(addToQueue)) {
 						pw.print((char)encodingTable.get(next).intValue());
-						Node addToQueue = new Node(next.substring(0, next.length()-1), nextEncoding);
-						if(encodingTable.containsKey(addToQueue))
-						{
-							queue.remove(addToQueue);
-						}
+						queue.remove(addToQueue);
 						queue.add(addToQueue);
 						encodingTable.replace(addToQueue, 0, 1);
 					} else {
@@ -61,6 +58,11 @@ public class Encoder {
 						pw.print((char)encodingTable.get(next.substring(next.length()-1)).intValue());
 						nextEncoding++;
 					}
+				}
+				if (encodingTable.size()==MAXHASHSIZE)
+				{
+					Node nodeToRemove = queue.removeFirst();
+					encodingTable.remove(nodeToRemove);
 				}
 				//increments nextEncoding so the next code always gets the next number
 				next = next.substring(next.length()-1); //resets next to its last character to prepare for the next code
