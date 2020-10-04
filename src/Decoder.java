@@ -2,9 +2,13 @@ import java.util.*;
 import java.io.*;
 public class Decoder {
 final static int MAXHASHSIZE = 50000;
+<<<<<<< Updated upstream
 final int DICTINT = 128;
 
 	private HashMap<Node, Integer> encodingTable; //Stores all encodings in a HashMap (could be a normal array but I'm lazy)
+=======
+	private HashMap<Integer, String> encodingTable; //Stores all encodings in a HashMap (could be a normal array but I'm lazy)
+>>>>>>> Stashed changes
 	private MyQueue queue = new MyQueue();
 	public Decoder () { //copy-pasted setup from Encoder
 		encodingTable = new HashMap<Node, Integer>();
