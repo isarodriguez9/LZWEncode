@@ -1,23 +1,23 @@
 public class Node {
-private int number;
+private boolean boo;
 private String str;
-	public Node(String string, int integer)
+	public Node(String string, boolean bool)
 	{
-		number = integer;
+		boo = bool;
 		str = string;
 	}
 
-	public int getValue()
+	public boolean inQueue()
 	{
-		return number;
+		return boo;
 	}
 	public String getStr()
 	{
 		return str;
 	}
-	public void setValue(int num)
+	public void setBool(boolean bool)
 	{
-		number = num;
+		boo = bool;
 	}
 	public void setStr(String string)
 	{
