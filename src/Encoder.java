@@ -28,17 +28,17 @@ public class Encoder {
 			int nextEncoding = DICTINT;//keeps track of the next set of chars' code number in the hashmap
 			String next = (char)br.read() + "";//next set of characters
 			while (br.ready()) {
-				while (encodingTable.containsKey(new Node(next, false))|| encodingTable.containsKey(new Node(next, false)) && br.ready()) { //Checks if next is in table, if it is, add next letter until it a new, previously unseen string is formed
+				while (encodingTable.containsKey(new Node(next, false))|| encodingTable.containsKey(new Node(next, true)) && br.ready()) { //Checks if next is in table, if it is, add next letter until it a new, previously unseen string is formed
 					next+=(char)br.read();
 				}
 
 				if (br.ready())
 				{
-					Node currentNode = new Node(next,nextEncoding);
-					encodingTable.put(currentNode,0); //Adds new code to Hashmap
+					Node currentNode = new Node(next,false);
+					encodingTable.put(currentNode,nextEncoding); //Adds new code to Hashmap
 					System.out.println("Next: " + next + " substring: " + next.substring(0, next.length()-1));
 					pw.print((char)encodingTable.get(next.substring(0, next.length()-1)).intValue());
-					Node addToQueue = new Node(next.substring(0, next.length()-1), nextEncoding);
+					Node addToQueue = new Node(next.substring(0, next.length()-1), true);
 					if(encodingTable.containsKey(addToQueue))
 					{
 						queue.remove(addToQueue);
