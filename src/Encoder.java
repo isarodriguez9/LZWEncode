@@ -28,7 +28,7 @@ public class Encoder {
 			int nextEncoding = DICTINT;//keeps track of the next set of chars' code number in the hashmap
 			String next = (char)br.read() + "";//next set of characters
 			while (br.ready()) {
-				while (encodingTable.containsKey(next) && br.ready()) { //Checks if next is in table, if it is, add next letter until it a new, previously unseen string is formed
+				while (encodingTable.containsKey(new Node(next, false))|| encodingTable.containsKey(new Node(next, false)) && br.ready()) { //Checks if next is in table, if it is, add next letter until it a new, previously unseen string is formed
 					next+=(char)br.read();
 				}
 
