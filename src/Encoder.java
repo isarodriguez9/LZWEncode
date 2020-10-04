@@ -6,12 +6,13 @@ public class Encoder {
 	final static int MAXHASHSIZE = 5000;
 	private HashMap<Node, Integer> encodingTable; //Stores all encodings in a HashMap
 	private MyQueue queue = new MyQueue(); 
-	//Fills the Hashmap with all 255 single chars.
+	
+	//Fills the Hashmap with all 127 single chars.
 	public Encoder() {
 		encodingTable = new HashMap<Node, Integer>();
 		for (int i = 0; i < DICTINT; i++) {
-			Node toBeAdded = new Node((char)i+"",i);
-			encodingTable.put(toBeAdded,0);
+			Node toBeAdded = new Node((char)i+"",false);
+			encodingTable.put(toBeAdded,i);
 		}
 	}
 
