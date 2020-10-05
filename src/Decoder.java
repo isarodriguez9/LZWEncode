@@ -8,8 +8,8 @@ public class Decoder {
 
 	public Decoder () { //copy-pasted setup from Encoder
 		encodingTable = new HashMap<Node, Integer>();
-		for (int i = 0; i <= DICTINT; i++) {
-			encodingTable.put(new Node((char)i + "",i), 0);
+		for (int i = 0; i < DICTINT; i++) {
+			encodingTable.put(new Node((char)i + "",false), i);
 		}
 		System.out.println(encodingTable.values());
 	}
