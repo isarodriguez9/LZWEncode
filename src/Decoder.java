@@ -32,8 +32,8 @@ public class Decoder {
 				code = br.read();
 				if (encodingTable.containsKey(code)) {
 					write(encodingTable.get(code).getStr(), bw);
-					Node toBeAdded = new Node(encodingTable.get(code).getStr(), true);
-					if(encodingTable.get(code).inQueue())
+					Node toBeAdded = new Node(encodingTable.get(code).getStr(), true); //creates a node to be added the the queue 
+					if(encodingTable.get(code).inQueue()) //remove the node from the queue if it is already in it before re-adding to the top 
 					{
 						queue.remove(toBeAdded);
 					}
@@ -63,7 +63,7 @@ public class Decoder {
 			exe.printStackTrace();
 		}
 	}
-
+//essentially printwriter methods
 	public void write(String value, PrintWriter writer){
 		try {
 			writer.print(value);
