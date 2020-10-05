@@ -6,9 +6,11 @@ public class Tester {
 		/*String path = "/Users/chasethumann/Documents/GitHub/LZWEncode/encoding1.txt";
 		Encoder encoder = new Encoder();
 		encoder.Encode(path);*/
-		String path = "/Users/chasethumann/Documents/GitHub/LZWEncode/encoding1.lzw";
-		Decoder decoder = new Decoder();
-		decoder.decode(path);
+//		String path = "/Users/chasethumann/Documents/GitHub/LZWEncode/encoding1.lzw";
+//		Decoder decoder = new Decoder();
+//		decoder.decode(path);
+		Encoder encoder = new Encoder();
+		encoder.Encode("EncoderTester");
 
 	}
 }

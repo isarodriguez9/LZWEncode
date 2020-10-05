@@ -6,7 +6,7 @@ public class Encoder {
 	final static int MAXHASHSIZE = 5000;
 	private HashMap<Node, Integer> encodingTable; //Stores all encodings in a HashMap
 	private MyQueue queue = new MyQueue(); 
-	
+
 	//Fills the Hashmap with all 127 single chars.
 	public Encoder() {
 		encodingTable = new HashMap<Node, Integer>();
@@ -28,11 +28,11 @@ public class Encoder {
 			int nextEncoding = DICTINT;//keeps track of the next set of chars' code number in the hashmap
 			String next = (char)br.read() + "";//next set of characters
 			while (br.ready()) {
-				while (encodingTable.containsKey(new Node(next, false))|| encodingTable.containsKey(new Node(next, true)) && br.ready()) { //Checks if next is in table, if it is, add next letter until it a new, previously unseen string is formed
+				while (encodingTable.containsKey(new Node(next, false))|| encodingTable.containsKey(new Node(next, true))) { //Checks if next is in table, if it is, add next letter until it a new, previously unseen string is formed
 					next+=(char)br.read();
 				}
 
-				if (br.ready())
+				if (encodingTable.size()<MAXHASHSIZE)
 				{
 					Node currentNode = new Node(next,false);
 					Node toBeReplaced = new Node(next.substring(0, next.length()-1),false);
@@ -40,41 +40,28 @@ public class Encoder {
 					System.out.println("Next: " + next + " substring: " + next.substring(0, next.length()-1));
 					pw.print((char)encodingTable.get(toBeReplaced).intValue());
 					Node addToQueue = new Node(next.substring(0, next.length()-1), true);
-					
+
 					if(encodingTable.containsKey(addToQueue))
 					{
 						queue.remove(addToQueue);
 					}
 					queue.add(addToQueue);
-					
+
 					Integer replacedValue = encodingTable.get(toBeReplaced);
 					encodingTable.remove(toBeReplaced);
 					encodingTable.put(addToQueue,replacedValue);
 					System.out.println((int)'’');
 					nextEncoding++;
 				}
-					
-//				} else {
-//					Node addToQueue = new Node(next.substring(0, next.length()-1), true);
-//					if (encodingTable.containsKey(addToQueue)) {
-//						pw.print((char)encodingTable.get(next).intValue());
-//						queue.remove(addToQueue);
-//						queue.add(addToQueue);
-//						encodingTable.replace(addToQueue, 0, 1);
-//					} else {
-//						encodingTable.put(new Node(next, nextEncoding), 0); //Adds new code to Hashmap
-//						pw.print((char)encodingTable.get(next.substring(next.length()-1)).intValue());
-//						nextEncoding++;
-//					}
-				}
-				if (encodingTable.size()==MAXHASHSIZE)
+
+				else
 				{
 					Node nodeToRemove = queue.removeFirst();
 					encodingTable.remove(nodeToRemove);
 				}
 				//increments nextEncoding so the next code always gets the next number
 				next = next.substring(next.length()-1); //resets next to its last character to prepare for the next code
-		//	}
+			}
 			br.close();
 			pw.close();
 		} catch (Exception exe) { //catches any exceptions
