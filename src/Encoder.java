@@ -44,7 +44,10 @@ public class Encoder {
 						queue.remove(addToQueue);
 					}
 					queue.add(addToQueue);
-					encodingTable.replace(addToQueue, 0, 1);
+					Node toBeReplaced = new Node(next.substring(0, next.length()-1),false);
+					Integer replacedValue = encodingTable.get(toBeReplaced);
+					encodingTable.remove(toBeReplaced);
+					encodingTable.add(addToQueue,replacedValue);
 					System.out.println((int)'’');
 					nextEncoding++;
 				} else {
