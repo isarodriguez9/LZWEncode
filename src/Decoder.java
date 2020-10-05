@@ -30,8 +30,8 @@ public class Decoder {
 
 			while (br.ready()) {
 				code = br.read();
-				if (encodingTable.getKey(code)) {
-					write(encodingTable.get(code), bw);
+				if (encodingTable.containsKey(code)) {
+					write(encodingTable.get(code).getStr(), bw);
 
 				} else {
 					encodingTable.put(nextEncoding, prevValue + prevValue.substring(0,1)); //Adds edge case to HashMap (there is a way to make this not necessary and to only add to encoding table in one step always but i dont wanna rn)
