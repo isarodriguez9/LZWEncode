@@ -34,8 +34,8 @@ public class Decoder {
 					write(encodingTable.get(code).getStr(), bw);
 
 				} else {
-					encodingTable.put(nextEncoding, prevValue + prevValue.substring(0,1)); //Adds edge case to HashMap (there is a way to make this not necessary and to only add to encoding table in one step always but i dont wanna rn)
-					write(encodingTable.get(code), bw);
+					encodingTable.put(nextEncoding, new Node(prevValue + prevValue.substring(0,1), true)); //Adds edge case to HashMap (there is a way to make this not necessary and to only add to encoding table in one step always but i dont wanna rn)
+					write(encodingTable.get(code).getStr(), bw);
 					nextEncoding++;
 				}
 				String check = prevValue + encodingTable.get(code).substring(0,1); // stores previous iteration + first letter of new iteration
