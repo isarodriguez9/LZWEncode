@@ -52,18 +52,20 @@ public class Encoder {
 					encodingTable.put(addToQueue,replacedValue);
 					System.out.println((int)'’');
 					nextEncoding++;
-				} else {
-					Node addToQueue = new Node(next.substring(0, next.length()-1), true);
-					if (encodingTable.containsKey(addToQueue)) {
-						pw.print((char)encodingTable.get(next).intValue());
-						queue.remove(addToQueue);
-						queue.add(addToQueue);
-						encodingTable.replace(addToQueue, 0, 1);
-					} else {
-						encodingTable.put(new Node(next, nextEncoding), 0); //Adds new code to Hashmap
-						pw.print((char)encodingTable.get(next.substring(next.length()-1)).intValue());
-						nextEncoding++;
-					}
+				}
+					
+//				} else {
+//					Node addToQueue = new Node(next.substring(0, next.length()-1), true);
+//					if (encodingTable.containsKey(addToQueue)) {
+//						pw.print((char)encodingTable.get(next).intValue());
+//						queue.remove(addToQueue);
+//						queue.add(addToQueue);
+//						encodingTable.replace(addToQueue, 0, 1);
+//					} else {
+//						encodingTable.put(new Node(next, nextEncoding), 0); //Adds new code to Hashmap
+//						pw.print((char)encodingTable.get(next.substring(next.length()-1)).intValue());
+//						nextEncoding++;
+//					}
 				}
 				if (encodingTable.size()==MAXHASHSIZE)
 				{
@@ -72,7 +74,7 @@ public class Encoder {
 				}
 				//increments nextEncoding so the next code always gets the next number
 				next = next.substring(next.length()-1); //resets next to its last character to prepare for the next code
-			}
+		//	}
 			br.close();
 			pw.close();
 		} catch (Exception exe) { //catches any exceptions
