@@ -3,13 +3,13 @@ import java.io.*;
 public class Decoder {
 	final static int MAXHASHSIZE = 50000;
 	final int DICTINT = 128;
-	private HashMap<Node, Integer> encodingTable; //Stores all encodings in a HashMap (could be a normal array but I'm lazy)
+	private HashMap<Integer, Node> encodingTable; //Stores all encodings in a HashMap (could be a normal array but I'm lazy)
 	private MyQueue queue = new MyQueue();
 
 	public Decoder () { //copy-pasted setup from Encoder
-		encodingTable = new HashMap<Node, Integer>();
+		encodingTable = new HashMap<Integer,Node>();
 		for (int i = 0; i < DICTINT; i++) {
-			encodingTable.put(new Node((char)i + "",false), i);
+			encodingTable.put(i, new Node((char)i + "",false));
 		}
 		System.out.println(encodingTable.values());
 	}
