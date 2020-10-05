@@ -35,23 +35,25 @@ public class Encoder {
 				if (br.ready())
 				{
 					Node currentNode = new Node(next,false);
+					Node toBeReplaced = new Node(next.substring(0, next.length()-1),false);
 					encodingTable.put(currentNode,nextEncoding); //Adds new code to Hashmap
 					System.out.println("Next: " + next + " substring: " + next.substring(0, next.length()-1));
-					pw.print((char)encodingTable.get(next.substring(0, next.length()-1)).intValue());
+					pw.print((char)encodingTable.get(toBeReplaced).intValue());
 					Node addToQueue = new Node(next.substring(0, next.length()-1), true);
+					
 					if(encodingTable.containsKey(addToQueue))
 					{
 						queue.remove(addToQueue);
 					}
 					queue.add(addToQueue);
-					Node toBeReplaced = new Node(next.substring(0, next.length()-1),false);
+					
 					Integer replacedValue = encodingTable.get(toBeReplaced);
 					encodingTable.remove(toBeReplaced);
-					encodingTable.add(addToQueue,replacedValue);
+					encodingTable.put(addToQueue,replacedValue);
 					System.out.println((int)'’');
 					nextEncoding++;
 				} else {
-					Node addToQueue = new Node(next.substring(0, next.length()-1), nextEncoding);
+					Node addToQueue = new Node(next.substring(0, next.length()-1), true);
 					if (encodingTable.containsKey(addToQueue)) {
 						pw.print((char)encodingTable.get(next).intValue());
 						queue.remove(addToQueue);
