@@ -30,7 +30,7 @@ public class Encoder {
 			while (br.ready()) {
 				Node containsKeyFalse = new Node(next, false);
 				Node containsKeyTrue = new Node(next, true);
-				while (encodingTable.containsKey(containsKeyFalse)|| encodingTable.containsKey(containsKeyTrue)) { //Checks if next is in table, if it is, add next letter until it a new, previously unseen string is formed
+				while(encodingTable.containsKey(containsKeyFalse)|| encodingTable.containsKey(containsKeyTrue)) { //Checks if next is in table, if it is, add next letter until it a new, previously unseen string is formed
 					next+=(char)br.read();
 					containsKeyFalse.setStr(next);
 					containsKeyTrue.setStr(next);

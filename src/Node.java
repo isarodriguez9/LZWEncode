@@ -15,7 +15,7 @@ private String str;
 	{
 		return str;
 	}
-	public void setBool(boolean bool)
+	public void setInQueue(boolean bool)
 	{
 		boo = bool;
 	}
