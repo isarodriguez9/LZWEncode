@@ -32,18 +32,30 @@ public class Decoder {
 				code = br.read();
 				if (encodingTable.containsKey(code)) {
 					write(encodingTable.get(code).getStr(), bw);
+					Node toBeAdded = new Node(encodingTable.get(code).getStr(), true);
+					if(encodingTable.get(code).inQueue())
+					{
+						queue.remove(toBeAdded);
+					}
+					queue.add(toBeAdded);
 
 				} else {
 					encodingTable.put(nextEncoding, new Node(prevValue + prevValue.substring(0,1), true)); //Adds edge case to HashMap (there is a way to make this not necessary and to only add to encoding table in one step always but i dont wanna rn)
 					write(encodingTable.get(code).getStr(), bw);
+					Node toBeAdded = new Node(encodingTable.get(code).getStr(), true);
+					if(encodingTable.get(code).inQueue())
+					{
+						queue.remove(toBeAdded);
+					}
+					queue.add(toBeAdded);
 					nextEncoding++;
 				}
-				String check = prevValue + encodingTable.get(code).substring(0,1); // stores previous iteration + first letter of new iteration
+				String check = prevValue + encodingTable.get(code).getStr().substring(0,1); // stores previous iteration + first letter of new iteration
 				if (!prevValue.equals("") && (!encodingTable.get(nextEncoding-1).equals(check))) {             // if it isnt already in the table...
-					encodingTable.put(nextEncoding, check); //Adds it to HashMap
+					encodingTable.put(nextEncoding, new Node(check, false)); //Adds it to HashMap
 					nextEncoding++;
 				}
-				prevValue = encodingTable.get(code);
+				prevValue = encodingTable.get(code).getStr();
 			}
 			br.close();
 			bw.close();
